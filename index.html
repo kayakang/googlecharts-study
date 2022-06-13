@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles.css">
     <title>데이터시각화 테스트</title>
     <script
             type="text/javascript"
@@ -24,14 +24,17 @@
 
         function drawChart() {
             // Define the chart to be drawn.
-            data = google.visualization.arrayToDataTable([
-                ['국가명', '매출액'  ],
+            data = new google.visualization.DataTable();
+            data.addColumn('string', '국가명');
+            data.addColumn('number', '매출액');
+            data.addRows([
                 ["인도", 100],
                 ["방글라데시", 90],
                 ["파키스탄", 80],
                 ["스리랑카", 70],
                 ["아랍에미리트", 60]
-            ]);
+            ])
+
 
             options = {
                 colors: ['#F4BA41', '#7ACCCF', '#3C69E2', '#8EA7EE', '#B5C6F3'],
