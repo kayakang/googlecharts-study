@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles.css">
     <title>데이터시각화 테스트</title>
     <script
             type="text/javascript"
@@ -12,41 +12,50 @@
     ></script>
 
     <script type="text/javascript">
-        // 아래 두 줄은 google charts가 있는 모든 웹 페이지에 포함되어야 함
-        // corechart (bar, column, line, area, stepped area, bubble, pie, donut, combo, candlestick, histogram, scatter)
-        // drawChart 이름은 전역에서 정한 마음대로 사용할 수 있음
-        google.charts.load("current", { packages: ["corechart"] });
+        // packages 밸류랑  google.visualization.XXXXXXX 랑 관련
+        // packages:['corechart']
+        // packages:['bar']
+        google.charts.load("current", { packages:['bar'] });
         google.charts.setOnLoadCallback(drawChart);
 
         let data;
         let options;
         let chart;
 
+
         function drawChart() {
-            // Define the chart to be drawn.
             data = google.visualization.arrayToDataTable([
-                ['국가명', '매출액', { role: 'style' }  ],
-                ["인도", 100, '#F4BA41'],
-                ["방글라데시", 90, '#7ACCCF'],
-                ["파키스탄", 80, '#3C69E2'],
-                ["스리랑카", 70, '#8EA7EE'],
-                ["아랍에미리트", 60, '#B5C6F3']
+                ["", "매출액", { role: "style" } ],
+                ["2021 Q1", 10906, "#3C69E2"],
+                ["2021 Q2", 9000, "#3C69E2"],
+                ["2021 Q3", 13000, "#3C69E2"],
+                ["2021 Q4", 10900, "#3C69E2"]
             ]);
 
-            options = {
-            };
+            // var view = new google.visualization.DataView(data);
+            // view.setColumns([0, 1,
+            //     { calc: "stringify",
+            //         sourceColumn: 1,
+            //         type: "string",
+            //         role: "annotation" },
+            //     2]);
 
-            // Instantiate and draw the chart.
-            chart = new google.visualization.BarChart(document.getElementById("chart_div"));
-            chart.draw(data, options);
+            options = {
+                width: 600,
+                height: 400,
+                bar: {groupWidth: "55%"},
+                legend: { position: "none" },
+
+            };
+            chart = new google.charts.Bar(document.getElementById("columnchart_material"));
+            chart.draw(data, google.charts.Bar.convertOptions(options));
         }
     </script>
 </head>
 <body>
-<h3>Sales by Country - 가로 바 차트</h3>
-<h1>USD $10,906,000</h1>
+<h3>Total Sales - 컬럼 차트</h3>
 <!-- Identify where the chart should be drawn. -->
-<div id="chart_div" style="width: 800px; height: 500px;"></div>
-<hr/>
+<div id="columnchart_material"></div>
+
 </body>
 </html>
