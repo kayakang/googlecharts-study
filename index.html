@@ -12,43 +12,38 @@
     ></script>
 
     <script type="text/javascript">
-        // packages 밸류랑  google.visualization.XXXXXXX 랑 관련
-        // packages:['corechart']
-        // packages:['bar']
-        google.charts.load("current", { packages:['bar'] });
-        google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', {
+            'packages':['geochart'],
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
 
-        let data;
-        let options;
-        let chart;
-
-
-        function drawChart() {
-            data = google.visualization.arrayToDataTable([
-                ["", "Renewals", "New"],
-                ["2021 Q1", 100, 200],
-                ["2021 Q2", 100, 120],
-                ["2021 Q3", 110, 210],
-                ["2021 Q4", 210, 180]
+        function drawRegionsMap() {
+            var data = google.visualization.arrayToDataTable([
+                ['Country', 'Popularity'],
+                ['India', 200],
+                ['Bangladesh', 300],
+                ['Pakistan', 400],
+                ['Sri Lanka', 500],
+                ['UAE', 600],
+                ['Afghanistan', 700]
             ]);
 
-            options = {
-                width: 600,
-                height: 400,
-                bar: {groupWidth: "55%"},
-                legend: { position: "none" },
-                colors: ["#6589E7", "#7ACCCF"]
-
+            var options = {
+                // backgroundColor: {fill: '', stroke: '', strokeWidth: 0},
+                colorAxis: {minValue: 0, colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6']},
+                legend: 'none',
+                magnifyingGlass: {enable: false, zoomFactor: 10.5},
             };
-            chart = new google.charts.Bar(document.getElementById("columnchart_material"));
-            chart.draw(data, google.charts.Bar.convertOptions(options));
+
+            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+            chart.draw(data, options);
         }
     </script>
 </head>
 <body>
-<h3>License - 더블 컬럼 차트</h3>
+<h3>Sales by Country - 지도 차트</h3>
 <!-- Identify where the chart should be drawn. -->
-<div id="columnchart_material"></div>
-
+<div id="regions_div" style="width: 900px; height: 500px;"></div>
 </body>
 </html>
