@@ -25,26 +25,19 @@
 
         function drawChart() {
             data = google.visualization.arrayToDataTable([
-                ["", "매출액", { role: "style" } ],
-                ["2021 Q1", 10906, "#3C69E2"],
-                ["2021 Q2", 9000, "#3C69E2"],
-                ["2021 Q3", 13000, "#3C69E2"],
-                ["2021 Q4", 10900, "#3C69E2"]
+                ["", "Renewals", "New"],
+                ["2021 Q1", 100, 200],
+                ["2021 Q2", 100, 120],
+                ["2021 Q3", 110, 210],
+                ["2021 Q4", 210, 180]
             ]);
-
-            // var view = new google.visualization.DataView(data);
-            // view.setColumns([0, 1,
-            //     { calc: "stringify",
-            //         sourceColumn: 1,
-            //         type: "string",
-            //         role: "annotation" },
-            //     2]);
 
             options = {
                 width: 600,
                 height: 400,
                 bar: {groupWidth: "55%"},
                 legend: { position: "none" },
+                colors: ["#6589E7", "#7ACCCF"]
 
             };
             chart = new google.charts.Bar(document.getElementById("columnchart_material"));
@@ -53,7 +46,7 @@
     </script>
 </head>
 <body>
-<h3>Total Sales - 컬럼 차트</h3>
+<h3>License - 더블 컬럼 차트</h3>
 <!-- Identify where the chart should be drawn. -->
 <div id="columnchart_material"></div>
 
