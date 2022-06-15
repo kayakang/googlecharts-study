@@ -1,0 +1,14 @@
+#col_chart_html_tooltip {
+    /*position: relative !important;*/
+}
+
+.google-visualization-tooltip {
+    padding: 5px !important;
+    width: auto;
+    border: none !important;
+    border-radius: 3px !important;
+    background-color:#171717 !important;
+    color: #FFFFFF ;
+    /*position:absolute !important;*/
+
+}
