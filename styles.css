@@ -1,5 +1,4 @@
-#col_chart_html_tooltip {
-    /*position: relative !important;*/
+#col_chart_html_tooltip:hover {
 }
 
 .google-visualization-tooltip {
@@ -10,5 +9,11 @@
     background-color:#171717 !important;
     color: #FFFFFF ;
     /*position:absolute !important;*/
-
+}
+.test::before {
+    color: red !important;
+    border: none !important;
+    background-color: white !important;
+    width: 10px;
+    height: 10px;
 }

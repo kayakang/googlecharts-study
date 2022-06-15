@@ -132,7 +132,7 @@
                 legend: 'none',
                 // TODO: 현재 컬러옵션 작동되지 않습니다
                 colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6'],
-                // tooptip.isHtml 옵션이 true여야 .google-visualization-tooltip  css 작업가능함
+                // tooptip.isHtml 옵션이 true여야 .google-visualization-tooltip으로  css 작업가능함
                 tooltip: { isHtml: true }
             };
 
@@ -140,7 +140,7 @@
             chart = new google.visualization.BarChart(document.querySelector("#col_chart_html_tooltip")).draw(data, options);
 
             function customHTMLContent(countryName) {
-                return `<div>${countryName}</div>`
+                return `<div class="test">${countryName}</div>`
             }
             function createCustomHTMLContent(top6, top7, top8, top9, top10) {
                 return `<ul>
