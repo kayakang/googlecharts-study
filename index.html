@@ -114,30 +114,30 @@
             data = new google.visualization.DataTable();
             data.addColumn('string', '국가명');
             data.addColumn('number', '매출액');
+            // options의 tooltip부분이 여기서 작동합니다
             data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+            data.addColumn({ 'role': 'style' });
             data.addRows([
-                ['India', 1000, customHTMLContent(mockData[0].country)],
-                ['Bangladesh', 990, customHTMLContent(mockData[1].country)],
-                ['Pakistan', 980, customHTMLContent(mockData[2].country)],
-                ['Sri Lanka', 900, customHTMLContent(mockData[3].country)],
-                ['UAE', 880, customHTMLContent(mockData[4].country)],
-                [mockData[5].country, 500, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )],
-                ['Syria', 450, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )],
-                ['Iraq', 400, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )],
-                ['Armenia', 390, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )],
-                ['Palestine', 380, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )]
+                ['India', 1000, customHTMLContent(mockData[0].country), '#133182'],
+                ['Bangladesh', 990, customHTMLContent(mockData[1].country), '#1D4BC6'],
+                ['Pakistan', 980, customHTMLContent(mockData[2].country), '#3B69E2'],
+                ['Sri Lanka', 900, customHTMLContent(mockData[3].country), '#6F90EA'],
+                ['UAE', 880, customHTMLContent(mockData[4].country), '#91ABEF'],
+                [mockData[5].country, 500, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6'],
+                ['Syria', 450, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6'],
+                ['Iraq', 400, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6'],
+                ['Armenia', 390, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6'],
+                ['Palestine', 380, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6']
             ])
 
             options = {
                 legend: 'none',
-                // TODO: 현재 컬러옵션 작동되지 않습니다
-                colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6'],
                 // tooptip.isHtml 옵션이 true여야 .google-visualization-tooltip으로  css 작업가능함
                 tooltip: { isHtml: true }
             };
 
             // Create and draw the visualization.
-            chart = new google.visualization.BarChart(document.querySelector("#col_chart_html_tooltip")).draw(data, options);
+            chart = new google.visualization.BarChart(document.querySelector("#bar-chart")).draw(data, options);
 
             function customHTMLContent(countryName) {
                 return `<div class="test">${countryName}</div>`
@@ -198,7 +198,7 @@
 <!-- Identify where the chart should be drawn. -->
 <div>
     <div id="regions_div" style="width: 900px; height: 500px;"></div>
-    <div id="col_chart_html_tooltip" style="width: 900px; height: 500px;"></div>
+    <div id="bar-chart" style="width: 900px; height: 500px;"></div>
 </div>
 <div id="chart_div" style="width: 900px; height: 500px;">dddd</div>
 <div>
