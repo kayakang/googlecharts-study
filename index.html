@@ -45,10 +45,160 @@
             chart.draw(data, options);
         }
     </script>
+    <script type="text/javascript">
+        // 아래 두 줄은 google charts가 있는 모든 웹 페이지에 포함되어야 함
+        // corechart (bar, column, line, area, stepped area, bubble, pie, donut, combo, candlestick, histogram, scatter)
+        // drawChart 이름은 전역에서 정한 마음대로 사용할 수 있음
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        let data;
+        let options;
+        let chart;
+
+        let mockData = [
+            {
+                country: "India",
+                totalSales: 1000,
+                percentage: 85,
+                id: 0
+            },
+            {
+                country: "Bangladesh",
+                totalSales: 990,
+                id: 1
+            },                {
+                country: "Pakistan",
+                totalSales: 980,
+                id: 2
+            },
+            {
+                country: "Sri Lanka",
+                totalSales: 900,
+                id: 3
+            },
+            {
+                country: "UAE",
+                totalSales: 880,
+                id: 4
+            },
+            {
+                country: "Afghanistan",
+                totalSales: 500,
+                id: 5
+            },
+            {
+                country: "Syria",
+                totalSales: 450,
+                id: 6
+            },
+            {
+                country: "Iraq",
+                totalSales: 400,
+                id: 7
+            },
+            {
+                country: "Armenia",
+                totalSales: 390,
+                id: 8
+            },
+            {
+                country: "Palestine",
+                totalSales: 380,
+                id: 9
+            },
+
+        ]
+        function drawChart() {
+            // Define the chart to be drawn.
+            data = new google.visualization.DataTable();
+            data.addColumn('string', '국가명');
+            data.addColumn('number', '매출액');
+            data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+            data.addRows([
+                ['India', 1000, ''],
+                ['Bangladesh', 990, ''],
+                ['Pakistan', 980, ''],
+                ['Sri Lanka', 900, ''],
+                ['UAE', 880, ''],
+                [mockData[5].country, 500, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )],
+                ['Syria', 450, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )],
+                ['Iraq', 400, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )],
+                ['Armenia', 390, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )],
+                ['Palestine', 380, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country )]
+            ])
+
+            options = {
+                legend: 'none',
+                // TODO: 현재 컬러옵션 작동되지 않습니다
+                colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6'],
+                tooltip: { isHtml: true }
+            };
+
+            // Create and draw the visualization.
+            chart = new google.visualization.BarChart(document.querySelector("#col_chart_html_tooltip")).draw(data, options);
+
+            function createCustomHTMLContent(top6, top7, top8, top9, top10) {
+                return `<ul>
+                            <li>${top6}</li>
+                            <li>${top7}</li>
+                            <li>${top8}</li>
+                            <li>${top9}</li>
+                            <li>${top10}</li>
+                        </ul>`
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        // 아래 두 줄은 google charts가 있는 모든 웹 페이지에 포함되어야 함
+        // corechart (bar, column, line, area, stepped area, bubble, pie, donut, combo, candlestick, histogram, scatter)
+        // drawChart 이름은 전역에서 정한 마음대로 사용할 수 있음
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        let data2;
+        let options2;
+        let chart2;
+
+        function drawChart() {
+            // Define the chart to be drawn.
+
+
+            data2 = new google.visualization.DataTable();
+            data2.addColumn('string', '국가명');
+            data2.addColumn('number', '매출액');
+            data2.addRows([
+                ['India', 5000],
+                ['Bangladesh', 4000],
+                ['Pakistan', 3000],
+                ['Sri Lanka', 2000],
+                ['UAE', 2000],
+                ['etc', 500],
+            ])
+
+
+            options2 = {
+                colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6'],
+                legend: 'none',
+            };
+
+            // Instantiate and draw the chart.
+            chart2 = new google.visualization.PieChart(document.getElementById("chart_div"));
+            chart2.draw(data2, options2);
+        }
+    </script>
 </head>
 <body>
-<h3>Sales by Country - 지도 차트</h3>
+<h3>Sales by Country</h3>
 <!-- Identify where the chart should be drawn. -->
-<div id="regions_div" style="width: 900px; height: 500px;"></div>
+<div>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    <div id="col_chart_html_tooltip" style="width: 900px; height: 500px;"></div>
+</div>
+<div id="chart_div" style="width: 900px; height: 500px;">dddd</div>
+<div>
+
+</div>
 </body>
 </html>
