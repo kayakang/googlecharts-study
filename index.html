@@ -115,42 +115,45 @@
             data.addColumn('string', '국가명');
             data.addColumn('number', '매출액');
             // options의 tooltip부분이 여기서 작동합니다
-            data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+            // data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+            data.addColumn({ 'role': 'annotation' })
             data.addColumn({ 'role': 'style' });
             data.addRows([
-                ['India', 1000, customHTMLContent(mockData[0].country), '#133182'],
-                ['Bangladesh', 990, customHTMLContent(mockData[1].country), '#1D4BC6'],
-                ['Pakistan', 980, customHTMLContent(mockData[2].country), '#3B69E2'],
-                ['Sri Lanka', 900, customHTMLContent(mockData[3].country), '#6F90EA'],
-                ['UAE', 880, customHTMLContent(mockData[4].country), '#91ABEF'],
-                [mockData[5].country, 500, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6'],
-                ['Syria', 450, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6'],
-                ['Iraq', 400, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6'],
-                ['Armenia', 390, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6'],
-                ['Palestine', 380, createCustomHTMLContent(mockData[5].country, mockData[6].country, mockData[7].country, mockData[8].country, mockData[9].country ), '#C4D2F6']
+                ['India', 1000, '$1000', '#133182'],
+                ['Bangladesh', 800, '$800', '#1D4BC6'],
+                ['Pakistan', 790, '$790', '#3B69E2'],
+                ['Sri Lanka', 750, '$750', '#6F90EA'],
+                ['UAE', 700, '$700', '#91ABEF'],
+                [mockData[5].country, 680, '$680', '#C4D2F6'],
+                ['Syria', 400, '$400', '#C4D2F6'],
+                ['Iraq', 380, '$380', '#C4D2F6'],
+                ['Armenia', 350, '$350', '#C4D2F6'],
+                ['Palestine', 320, '$320', '#C4D2F6']
             ])
 
             options = {
                 legend: 'none',
                 // tooptip.isHtml 옵션이 true여야 .google-visualization-tooltip으로  css 작업가능함
-                tooltip: { isHtml: true }
+                // tooltip: { isHtml: true },
             };
 
             // Create and draw the visualization.
             chart = new google.visualization.BarChart(document.querySelector("#bar-chart")).draw(data, options);
 
-            function customHTMLContent(countryName) {
-                return `<div class="test">${countryName}</div>`
-            }
-            function createCustomHTMLContent(top6, top7, top8, top9, top10) {
-                return `<ul>
-                            <li>${top6}</li>
-                            <li>${top7}</li>
-                            <li>${top8}</li>
-                            <li>${top9}</li>
-                            <li>${top10}</li>
-                        </ul>`
-            }
+            // storyboard v4 tooltip contents 관련 코드입니다.
+            // function customHTMLContent(countryName) {
+            //     return `<div class="test">${countryName}</div>`
+            // }
+            // function createCustomHTMLContent(top6, top7, top8, top9, top10) {
+            //     return `<ul>
+            //                 <li>${top6}</li>
+            //                 <li>${top7}</li>
+            //                 <li>${top8}</li>
+            //                 <li>${top9}</li>
+            //                 <li>${top10}</li>
+            //             </ul>`
+            // }
+
         }
     </script>
 
