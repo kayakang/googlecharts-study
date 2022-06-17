@@ -22,7 +22,3 @@
 text[text-anchor="start"] {
     fill: #424242;
 }
-
-text[text-anchor="start"]:hover {
-    fill: reds;
-}

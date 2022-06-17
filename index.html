@@ -131,6 +131,8 @@
                 ['Palestine', 320, '$320', '#C4D2F6']
             ])
             options = {
+                // 기본으로 제공되는 BAR 호버 & 액티브 기능 제거
+                enableInteractivity: false,
                 // 해당 바차트에서는 색상을 하나만 넣을 수 있음, 각자 넣으려면 컬럼에서 직접 넣는 방법이 있는데.. 위에서 스타일을 정하면 annotation 컬러 변경이 불가함
                 // colors: ['pink'],
                 legend: 'none',
@@ -151,8 +153,7 @@
                 tooltip: {
                     trigger: 'none'
                 },
-                bar: {groupWidth: 15}
-
+                bar: {groupWidth: 11},
             };
 
             // Create and draw the visualization.
