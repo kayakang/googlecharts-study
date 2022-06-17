@@ -1,19 +1,28 @@
-#col_chart_html_tooltip:hover {
+/* Customize Tooltip */
+/*.google-visualization-tooltip {*/
+/*    padding: 5px !important;*/
+/*    width: auto;*/
+/*    border: none !important;*/
+/*    border-radius: 3px !important;*/
+/*    background-color:#171717 !important;*/
+/*    color: #FFFFFF ;*/
+/*    !*position:absolute !important;*!*/
+/*}*/
+
+/*.test::before {*/
+/*    color: red !important;*/
+/*    border: none !important;*/
+/*    background-color: white !important;*/
+/*    width: 10px;*/
+/*    height: 10px;*/
+/*}*/
+
+
+/* annotation text color 변경*/
+text[text-anchor="start"] {
+    fill: #424242;
 }
 
-.google-visualization-tooltip {
-    padding: 5px !important;
-    width: auto;
-    border: none !important;
-    border-radius: 3px !important;
-    background-color:#171717 !important;
-    color: #FFFFFF ;
-    /*position:absolute !important;*/
-}
-.test::before {
-    color: red !important;
-    border: none !important;
-    background-color: white !important;
-    width: 10px;
-    height: 10px;
+text[text-anchor="start"]:hover {
+    fill: reds;
 }

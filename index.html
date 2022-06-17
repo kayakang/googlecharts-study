@@ -11,40 +11,40 @@
             src="https://www.gstatic.com/charts/loader.js"
     ></script>
 
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages':['geochart'],
-        });
-        google.charts.setOnLoadCallback(drawRegionsMap);
+<!--    <script type="text/javascript">-->
+<!--        google.charts.load('current', {-->
+<!--            'packages':['geochart'],-->
+<!--        });-->
+<!--        google.charts.setOnLoadCallback(drawRegionsMap);-->
 
-        function drawRegionsMap() {
-            var data = google.visualization.arrayToDataTable([
-                ['Country', 'Popularity'],
-                ['India', 1000],
-                ['Bangladesh', 990],
-                ['Pakistan', 980],
-                ['Sri Lanka', 900],
-                ['UAE', 880],
-                ['Afghanistan', 500],
-                ['Syria', 450],
-                ['Iraq', 400],
-                ['Armenia', 390],
-                ['Palestine', 380],
-            ]);
+<!--        function drawRegionsMap() {-->
+<!--            var data = google.visualization.arrayToDataTable([-->
+<!--                ['Country', 'Popularity'],-->
+<!--                ['India', 1000],-->
+<!--                ['Bangladesh', 990],-->
+<!--                ['Pakistan', 980],-->
+<!--                ['Sri Lanka', 900],-->
+<!--                ['UAE', 880],-->
+<!--                ['Afghanistan', 500],-->
+<!--                ['Syria', 450],-->
+<!--                ['Iraq', 400],-->
+<!--                ['Armenia', 390],-->
+<!--                ['Palestine', 380],-->
+<!--            ]);-->
 
-            var options = {
-                // backgroundColor: {fill: '', stroke: '', strokeWidth: 0},
-                colorAxis: { colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6'].reverse() },
-                legend: 'none',
-                magnifyingGlass: {enable: false, zoomFactor: 10.5},
-                tooltip: { trigger: 'none' },
-            };
+<!--            var options = {-->
+<!--                // backgroundColor: {fill: '', stroke: '', strokeWidth: 0},-->
+<!--                colorAxis: { colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6'].reverse() },-->
+<!--                legend: 'none',-->
+<!--                magnifyingGlass: {enable: false, zoomFactor: 10.5},-->
+<!--                tooltip: { trigger: 'none' },-->
+<!--            };-->
 
-            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+<!--            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));-->
 
-            chart.draw(data, options);
-        }
-    </script>
+<!--            chart.draw(data, options);-->
+<!--        }-->
+<!--    </script>-->
     <script type="text/javascript">
         // 아래 두 줄은 google charts가 있는 모든 웹 페이지에 포함되어야 함
         // corechart (bar, column, line, area, stepped area, bubble, pie, donut, combo, candlestick, histogram, scatter)
@@ -116,10 +116,10 @@
             data.addColumn('number', '매출액');
             // options의 tooltip부분이 여기서 작동합니다
             // data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
-            data.addColumn({ 'role': 'annotation' })
+            data.addColumn({ 'role': 'annotation' });
             data.addColumn({ 'role': 'style' });
             data.addRows([
-                ['India', 1000, '$1000', '#133182'],
+                ['India', 1000, '$1000' , '#133182'  ],
                 ['Bangladesh', 800, '$800', '#1D4BC6'],
                 ['Pakistan', 790, '$790', '#3B69E2'],
                 ['Sri Lanka', 750, '$750', '#6F90EA'],
@@ -130,19 +130,32 @@
                 ['Armenia', 350, '$350', '#C4D2F6'],
                 ['Palestine', 320, '$320', '#C4D2F6']
             ])
-
             options = {
+                // 해당 바차트에서는 색상을 하나만 넣을 수 있음, 각자 넣으려면 컬럼에서 직접 넣는 방법이 있는데.. 위에서 스타일을 정하면 annotation 컬러 변경이 불가함
+                // colors: ['pink'],
                 legend: 'none',
+                animation: {
+                    startup: true,
+                    duration: 200,
+                    easing: 'inAndOut',
+                },
                 // tooptip.isHtml 옵션이 true여야 .google-visualization-tooltip으로  css 작업가능함
                 // tooltip: { isHtml: true },
-                fontSize: 17.4,
-                fontColor: 'red',
-                // bar: {groupWidth: "70%"},
+                annotations: {
+                    alwaysOutside: true,
+                    textStyle: {
+                        // row 만들 때 이미 스타일을 줘버려서 annotation text color 적용이 안됨
+                        color : '#424242',
+                    }
+                },
+                tooltip: 'none',
+                bar: {groupWidth: 15}
 
             };
 
             // Create and draw the visualization.
-            chart = new google.visualization.BarChart(document.querySelector("#bar-chart")).draw(data, options);
+            chart = new google.visualization.BarChart(document.getElementById("bar-chart"));
+            chart.draw(data, options);
 
             // storyboard v4 tooltip contents 관련 코드입니다.
             // function customHTMLContent(countryName) {
@@ -204,10 +217,10 @@
 <h3>Sales by Country</h3>
 <!-- Identify where the chart should be drawn. -->
 <div>
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+<!--    <div id="regions_div" style="width: 900px; height: 500px;"></div>-->
     <div id="bar-chart" style="width: 900px; height: 500px;"></div>
 </div>
-<div id="chart_div" style="width: 900px; height: 500px;">dddd</div>
+<!--<div id="chart_div" style="width: 900px; height: 500px;"></div>-->
 <div>
 
 </div>
