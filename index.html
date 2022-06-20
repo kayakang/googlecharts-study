@@ -153,13 +153,26 @@
                 tooltip: {
                     trigger: 'none'
                 },
-                bar: {groupWidth: 11},
+                bar: {groupWidth: 13},
+
+
+
             };
+
+            const texts = document.querySelectorAll('text[text-anchor="start"]');
+            console.log('text', texts)
 
             // Create and draw the visualization.
             chart = new google.visualization.BarChart(document.getElementById("bar-chart"));
             chart.draw(data, options);
 
+            const onMouseOverHandler = () => {
+                const bars = document.querySelectorAll('rect[x="162"]')
+                bars.forEach(bar => bar.setAttribute("class", "country-bar"))
+                console.log('1 test')
+            }
+
+            google.visualization.events.addListener(chart, 'onmouseover', onMouseOverHandler);
             // storyboard v4 tooltip contents 관련 코드입니다.
             // function customHTMLContent(countryName) {
             //     return `<div class="test">${countryName}</div>`
@@ -178,6 +191,7 @@
     </script>
 
     <script type="text/javascript">
+
         // 아래 두 줄은 google charts가 있는 모든 웹 페이지에 포함되어야 함
         // corechart (bar, column, line, area, stepped area, bubble, pie, donut, combo, candlestick, histogram, scatter)
         // drawChart 이름은 전역에서 정한 마음대로 사용할 수 있음
@@ -190,7 +204,6 @@
 
         function drawChart() {
             // Define the chart to be drawn.
-
 
             data2 = new google.visualization.DataTable();
             data2.addColumn('string', '국가명');
@@ -208,12 +221,26 @@
             options2 = {
                 colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6'],
                 legend: 'none',
+                enableInteractivity: false,
+
+
             };
 
             // Instantiate and draw the chart.
             chart2 = new google.visualization.PieChart(document.getElementById("chart_div"));
             chart2.draw(data2, options2);
+
+            const onMouseOverHandler = () => {
+                const pies = document.querySelectorAll('path[stroke="#ffffff"]')
+                pies.forEach(pie => pie.setAttribute("class", "pie-bar"))
+                console.log(pies)
+                console.log('2 test')
+            }
+            google.visualization.events.addListener(chart2, 'onmouseover', onMouseOverHandler);
+
         }
+
+
     </script>
 </head>
 <body>
@@ -223,9 +250,10 @@
 <!--    <div id="regions_div" style="width: 900px; height: 500px;"></div>-->
     <div id="bar-chart" style="width: 900px; height: 500px;"></div>
 </div>
-<!--<div id="chart_div" style="width: 900px; height: 500px;"></div>-->
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
 <div>
 
 </div>
+
 </body>
 </html>

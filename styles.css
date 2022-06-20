@@ -22,3 +22,13 @@
 text[text-anchor="start"] {
     fill: #424242;
 }
+/*}*/
+
+
+g:hover >.country-bar:not(:hover){
+    opacity: .2;
+}
+
+.pie-bar:not(:hover){
+    opacity: .2;
+}
