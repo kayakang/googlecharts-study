@@ -1,34 +1,48 @@
 /* Customize Tooltip */
-/*.google-visualization-tooltip {*/
-/*    padding: 5px !important;*/
-/*    width: auto;*/
-/*    border: none !important;*/
-/*    border-radius: 3px !important;*/
-/*    background-color:#171717 !important;*/
-/*    color: #FFFFFF ;*/
-/*    !*position:absolute !important;*!*/
-/*}*/
+.google-visualization-tooltip {
+    padding:  8px 8px 0 8px !important;
+    border: none !important;
+    border-radius: 3px !important;
+    background-color:#171717 !important;
+    color: #FFFFFF ;
+}
 
-/*.test::before {*/
-/*    color: red !important;*/
-/*    border: none !important;*/
-/*    background-color: white !important;*/
-/*    width: 10px;*/
-/*    height: 10px;*/
-/*}*/
+.google-visualization-tooltip > ul {
+    /*text-indent: 20px;*/
+    margin-left: -20px;
+}
+
 
 
 /* annotation text color 변경*/
 text[text-anchor="start"] {
     fill: #424242;
 }
+/*.bar-annotation-text {*/
+/*    fill: #424242 !important;*/
+
 /*}*/
 
 
-g:hover >.country-bar:not(:hover){
+/*g:hover >.country-bar:not(:hover) {*/
+/*    opacity: .2;*/
+/*}*/
+
+
+.country-pie {
+    stroke: transparent;
+}
+
+
+svg:hover >.country-pie:not(:hover) {
     opacity: .2;
 }
 
-.pie-bar:not(:hover){
-    opacity: .2;
+/*.percentage-text{*/
+/*    fill: #FFFFFF !important;*/
+/*}*/
+
+path[stroke="#FFFFFF"] {
+   /*stroke: transparent !important;*/
 }
+

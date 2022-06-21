@@ -10,41 +10,6 @@
             type="text/javascript"
             src="https://www.gstatic.com/charts/loader.js"
     ></script>
-
-<!--    <script type="text/javascript">-->
-<!--        google.charts.load('current', {-->
-<!--            'packages':['geochart'],-->
-<!--        });-->
-<!--        google.charts.setOnLoadCallback(drawRegionsMap);-->
-
-<!--        function drawRegionsMap() {-->
-<!--            var data = google.visualization.arrayToDataTable([-->
-<!--                ['Country', 'Popularity'],-->
-<!--                ['India', 1000],-->
-<!--                ['Bangladesh', 990],-->
-<!--                ['Pakistan', 980],-->
-<!--                ['Sri Lanka', 900],-->
-<!--                ['UAE', 880],-->
-<!--                ['Afghanistan', 500],-->
-<!--                ['Syria', 450],-->
-<!--                ['Iraq', 400],-->
-<!--                ['Armenia', 390],-->
-<!--                ['Palestine', 380],-->
-<!--            ]);-->
-
-<!--            var options = {-->
-<!--                // backgroundColor: {fill: '', stroke: '', strokeWidth: 0},-->
-<!--                colorAxis: { colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6'].reverse() },-->
-<!--                legend: 'none',-->
-<!--                magnifyingGlass: {enable: false, zoomFactor: 10.5},-->
-<!--                tooltip: { trigger: 'none' },-->
-<!--            };-->
-
-<!--            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));-->
-
-<!--            chart.draw(data, options);-->
-<!--        }-->
-<!--    </script>-->
     <script type="text/javascript">
         // 아래 두 줄은 google charts가 있는 모든 웹 페이지에 포함되어야 함
         // corechart (bar, column, line, area, stepped area, bubble, pie, donut, combo, candlestick, histogram, scatter)
@@ -114,8 +79,7 @@
             data = new google.visualization.DataTable();
             data.addColumn('string', '국가명');
             data.addColumn('number', '매출액');
-            // options의 tooltip부분이 여기서 작동합니다
-            // data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+
             data.addColumn({ 'role': 'annotation' });
             data.addColumn({ 'role': 'style' });
             data.addRows([
@@ -153,39 +117,37 @@
                 tooltip: {
                     trigger: 'none'
                 },
-                bar: {groupWidth: 13},
+                bar: { groupWidth: 15 },
 
 
 
             };
 
-            const texts = document.querySelectorAll('text[text-anchor="start"]');
-            console.log('text', texts)
-
             // Create and draw the visualization.
             chart = new google.visualization.BarChart(document.getElementById("bar-chart"));
             chart.draw(data, options);
 
-            const onMouseOverHandler = () => {
-                const bars = document.querySelectorAll('rect[x="162"]')
-                bars.forEach(bar => bar.setAttribute("class", "country-bar"))
-                console.log('1 test')
-            }
 
-            google.visualization.events.addListener(chart, 'onmouseover', onMouseOverHandler);
-            // storyboard v4 tooltip contents 관련 코드입니다.
-            // function customHTMLContent(countryName) {
-            //     return `<div class="test">${countryName}</div>`
+                // let texts = document.querySelectorAll('text[text-anchor="start"]')
+                // texts.forEach(text =>  {
+                //     console.log('text test' ,text)
+                //     text.setAttribute("class", "color")
+                //
+                // }
+                // )
+
+
+
+
+            // const onMouseOverHandler = () => {
+            //     const bars = document.querySelectorAll('rect[x="162"]')
+            //     bars.forEach(bar => bar.setAttribute("class", "country-bar"))
+            //     console.log('1 test')
             // }
-            // function createCustomHTMLContent(top6, top7, top8, top9, top10) {
-            //     return `<ul>
-            //                 <li>${top6}</li>
-            //                 <li>${top7}</li>
-            //                 <li>${top8}</li>
-            //                 <li>${top9}</li>
-            //                 <li>${top10}</li>
-            //             </ul>`
-            // }
+            //
+            // google.visualization.events.addListener(chart, 'onmouseover', onMouseOverHandler);
+
+
 
         }
     </script>
@@ -208,35 +170,51 @@
             data2 = new google.visualization.DataTable();
             data2.addColumn('string', '국가명');
             data2.addColumn('number', '매출액');
+            // options의 tooltip부분이 여기서 작동합니다
+            data2.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
             data2.addRows([
-                ['India', 5000],
-                ['Bangladesh', 4000],
-                ['Pakistan', 3000],
-                ['Sri Lanka', 2000],
-                ['UAE', 2000],
-                ['etc', 500],
+                ['India', 5000, customHTMLContent('India', 5000, 10000)],
+                ['Bangladesh', 2000, customHTMLContent('Bangladesh', 2000, 10000)],
+                ['Pakistan', 1000, customHTMLContent('Pakistan', 1000, 10000)],
+                ['Sri Lanka', 500, customHTMLContent('Sri Lanka', 500, 10000)],
+                ['UAE', 500, customHTMLContent('UAE', 500, 10000)],
+                ['etc', 1000, customHTMLContent('etc', 1000, 10000)],
             ])
 
 
             options2 = {
                 colors: ['#133182', '#1D4BC6', '#3B69E2', '#6F90EA', '#91ABEF', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6', '#C4D2F6'],
                 legend: 'none',
-                enableInteractivity: false,
-
+                // enableInteractivity: false,
+                tooltip: { isHtml: true },
+                annotations: {
+                    alwaysOutside: true,
+                    textStyle: {
+                        // row 만들 때 이미 스타일을 줘버려서 annotation text color 적용이 안됨
+                        color : '#fffff',
+                    }
+                }
 
             };
 
             // Instantiate and draw the chart.
-            chart2 = new google.visualization.PieChart(document.getElementById("chart_div"));
+            chart2 = new google.visualization.PieChart(document.querySelector("#pie-div"));
             chart2.draw(data2, options2);
 
+            const texts = document.querySelectorAll('text[text-anchor="start"]')
+            texts.forEach(text  => text.setAttribute("class", "percentage-text"))
+
             const onMouseOverHandler = () => {
-                const pies = document.querySelectorAll('path[stroke="#ffffff"]')
-                pies.forEach(pie => pie.setAttribute("class", "pie-bar"))
-                console.log(pies)
-                console.log('2 test')
+                const pies = document.querySelectorAll('g')
+                pies.forEach(pie => pie.setAttribute("class", "country-pie"))
             }
+
+
             google.visualization.events.addListener(chart2, 'onmouseover', onMouseOverHandler);
+            // storyboard v4 tooltip contents 관련 코드입니다.
+            function customHTMLContent(countryName, sales, total) {
+                return `<strong class="test">${countryName}</strong>` + `<ul><li>$${sales} (${(sales/total*100)}%)</li><ul>`
+            }
 
         }
 
@@ -247,10 +225,10 @@
 <h3>Sales by Country</h3>
 <!-- Identify where the chart should be drawn. -->
 <div>
-<!--    <div id="regions_div" style="width: 900px; height: 500px;"></div>-->
-    <div id="bar-chart" style="width: 900px; height: 500px;"></div>
+    <div id="bar-chart" style="width: 900px; height: 500px;">
+    </div>
 </div>
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<div id="pie-div" style="width: 900px; height: 500px;"></div>
 <div>
 
 </div>
